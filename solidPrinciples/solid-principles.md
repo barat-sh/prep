@@ -66,74 +66,32 @@ class EmailService {
 
 ```java
 // Bad: Need to modify class to add new shape
-class AreaCalculator {
-    public double calculateArea(Object shape) {
-        if (shape instanceof Circle) {
-            Circle circle = (Circle) shape;
-            return Math.PI * circle.getRadius() * circle.getRadius();
-        } else if (shape instanceof Rectangle) {
-            Rectangle rectangle = (Rectangle) shape;
-            return rectangle.getWidth() * rectangle.getHeight();
-        }
-        return 0; // Need to modify this class to add new shapes
+public class PaymentService {
+    public void process(String type) {
+        if (type.equals("credit")){
+            // process credit card
+        } else if (type.equeal)
     }
-}
+} // Need to modify this class to add new shapes
 
 // Good: Open for extension
-abstract class Shape {
-    public abstract double calculateArea();
+interface paymentMethod {
+    void pay();
 }
 
-class Circle extends Shape {
-    private double radius;
-    
-    public Circle(double radius) {
-        this.radius = radius;
-    }
-    
-    @Override
-    public double calculateArea() {
-        return Math.PI * radius * radius;
+class creditCardPayment implements paymentMethod {
+    public void pay() {
+        // Credit Card payment logic
     }
 }
 
-class Rectangle extends Shape {
-    private double width;
-    private double height;
-    
-    public Rectangle(double width, double height) {
-        this.width = width;
-        this.height = height;
-    }
-    
-    @Override
-    public double calculateArea() {
-        return width * height;
+class upiPayment implements paymentMethods {
+    public void pay() {
+        // UPI payment logic
     }
 }
 
-// Can add new shapes without modifying existing code
-class Triangle extends Shape {
-    private double base;
-    private double height;
-    
-    public Triangle(double base, double height) {
-        this.base = base;
-        this.height = height;
-    }
-    
-    @Override
-    public double calculateArea() {
-        return (base * height) / 2;
-    }
-}
-
-// Using the shapes
-class AreaPrinter {
-    public void printArea(Shape shape) {
-        System.out.println("Area: " + shape.calculateArea());
-    }
-}
+// Can add new payments without modifying existing code
 ```
 
 ## 3. Liskov Substitution Principle (LSP)
